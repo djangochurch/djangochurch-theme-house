@@ -1,4 +1,4 @@
-{% load static from staticfiles %}{% load page_tags %}{% load news_tags %}{% load events_tags %}<!DOCTYPE html>
+{% load static from staticfiles %}{% load page_tags news_tags events_tags %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>{% block title %}DjangoChurch{% endblock %}</title>
@@ -64,9 +64,9 @@
 <footer class="foot">
     <p>&copy; Copyright {% now "Y" %}. All rights reserved.</p>
     <ul>
-        <li><a href="http://maps.google.co.uk">Address goes here</a></li>
-        <li><a href="#">email@djangochurch.org</a></li>
-        <li>0333 344 7800</li>
+        <li><a href="http://maps.google.co.uk" target="_blank">Address goes here</a></li>
+        <li><a href="mailto:email@example.org">email@example.org</a></li>
+        <li>0121 496 0000</li>
     </ul>
 </footer>
 
