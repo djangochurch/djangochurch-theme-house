@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load page_tags %}
+
+
+{% block title %}{{ page.title }} - {{ block.super }}{% endblock %}
+
+{% block pagetitle %}<a href="{{ page.get_absolute_url }}">{{ page.title }}</a>{% endblock %}
+
+
+{% block nav %}
+<ul>
+    {% get_root_pages page as root_pages %}
+    {% for page, page_active in root_pages %}
+        <li><a href="{{ page.get_absolute_url }}"{% if page_active %} class="active"{% endif %}>{{ page.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock nav %}
+
+
+{% block subnav %}
+{% get_pages_at_level page as subnav_pages %}
+{% if subnav_pages %}
+    <nav class="subnav">
+        <ul>
+            {% for page, page_active in subnav_pages %}
+                <li><a href="{{ page.get_absolute_url }}"{% if page_active %} class="active"{% endif %}>{{ page.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}
+{% endblock subnav %}
+
+
+{% block content %}
+<p>{{ page.content|safe }}</p>
+{% endblock content %}

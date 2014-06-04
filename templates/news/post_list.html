@@ -1,0 +1,6 @@
+{% extends "news/base_post_list.html" %}
+
+
+{% block title %}News - {{ block.super }}{% endblock %}
+
+{% block pagetitle %}<a href="{% url 'blanc_basic_news:post-list' %}">News</a>{% endblock %}

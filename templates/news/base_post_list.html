@@ -1,0 +1,37 @@
+{% extends "news/base.html" %}
+{% load thumbnail %}
+
+
+{% block content %}
+<ul class="post-list">
+    {% for i in object_list %}
+        <li class="post summary {% if i.image %}image{% endif %}">
+            {% if i.image %}
+                {% thumbnail i.image.file 480x360 upscale as thumb %}
+                <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
+            {% endif %}
+            <h1><a href="{{ i.get_absolute_url }}">{{ i }}</a></h1>
+            <h6>{{ i.date|date:"j M Y" }} &bull; <a href="{{ i.category.get_absolute_url }}">{{ i.category }}</a></h6>
+            <div class="teaser">
+                {% if i.teaser %}
+                    {{ i.teaser|linebreaks }}
+                {% else %}
+                    {{ i.content|safe }}
+                {% endif %}
+            </div>
+            <a class="more" href="{{ i.get_absolute_url }}">Read More</a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% if is_paginated %}
+    <nav class="pagination">
+        {% if page_obj.has_previous %}
+            <a class="prev" href="?page={{ page_obj.previous_page_number }}">Prev</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <a class="next" href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </nav>
+{% endif %}
+{% endblock content %}

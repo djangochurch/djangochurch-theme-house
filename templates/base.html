@@ -1,0 +1,74 @@
+{% load static from staticfiles %}{% load page_tags %}{% load news_tags %}{% load events_tags %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}DjangoChurch{% endblock %}</title>
+    <meta name="author" content="DjangoChurch">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet'>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!--[if lt IE 9]>
+        <script src="{% static 'js/modernizr.js' %}"></script>
+    <![endif]-->
+    {% block endhead %}{% endblock %}
+</head>
+<body>
+
+<main class="page">
+    <header class="head">
+        <h1><a href="/">DjangoChurch</a></h1>
+        <nav class="nav">
+            {% block nav %}
+            <ul>
+                {% get_root_pages as root_pages %}
+                {% for page, page_active in root_pages %}
+                    <li><a href="{{ page.get_absolute_url }}"{% if page_active %} class="active"{% endif %}>{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endblock nav %}
+        </nav>
+        <nav class="subnav">
+            {% block subnav %}{% endblock %}
+        </nav>
+    </header>
+
+    <div class="main">
+        <article class="content box">
+            <div class="wrap">
+                {% block content %}{% endblock %}
+            </div>
+        </article>
+        <aside class="side">
+            <div class="box">
+                <div class="news">
+                    {% get_latest_news 1 as news_list %}
+                    {% for news in news_list %}
+                        <h2><a href="{{ news.get_absolute_url }}">{{ news.title|truncatewords_html:'5' }}</a></h2>
+                        <p>{% firstof news.teaser|truncatewords_html:'10' news.content|truncatewords_html:"10" %} <a href="{{ news.get_absolute_url }}" title="{{ news.title }}">more</a></p>
+                        <h3><a href="{% url 'blanc_basic_news:post-list' %}">More News...</a></h3>
+                    {% endfor %}
+                </div>
+                <div class="events">
+                    {% get_upcoming_events 1 as events %}
+                    {% for event in events %}
+                        <h2><a href="{{ event.get_absolute_url }}">{{ event.title|truncatewords_html:'5' }}</a></h2>
+                        <p>{{ event.description|truncatewords_html:'10' }} <a href="{{ event.get_absolute_url }}" title="{{ event.title }}">more</a></p>
+                        <h3><a href="{% url 'blanc_basic_events:events-home' %}">More Events...</a></h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </aside>
+    </div>
+</main>
+
+<footer class="foot">
+    <p>&copy; Copyright {% now "Y" %}. All rights reserved.</p>
+    <ul>
+        <li><a href="http://maps.google.co.uk">Address goes here</a></li>
+        <li><a href="#">email@djangochurch.org</a></li>
+        <li>0333 344 7800</li>
+    </ul>
+</footer>
+
+</body>
+</html>

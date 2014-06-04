@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+
+{% block title %}Events - {{ block.super }}{% endblock %}
+
+{% block pagetitle %}<a href="{% url 'blanc_basic_events:events-home' %}">Events</a>{% endblock %}
+
+{% block content %}
+<div class="events-table">
+    <section class="regular-events">
+        <h1>Weekly Events</h1>
+        {% for i in object_list %}
+            {% ifchanged i.day_of_the_week %}
+                </ul>
+                <h3>{{ i.get_day_of_the_week_display|slice:"0:3" }}</h3>
+                <ul class="event-list {% cycle 'odd' 'even' %}">
+            {% endifchanged %}
+            <li>
+                <h4>{{ i }}</h4>
+                <h5>{{ i.frequency }}</h5>
+                <p>{{ i.description|safe }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+
+    <section class="special-events">
+        <h1>Special events</h1>
+        <ul class="event-list">
+            {% for i in view.special_events_this_week %}
+                <li {% if not i.image %}class="noimage"{% endif %}>
+                    {% if i.image %}
+                        {% thumbnail i.image.file 96x96 crop as thumb %}
+                        <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
+                    {% endif %}
+                    <h4><a href="{{ i.get_absolute_url }}">{{ i }}</a></h4>
+                    <h5>{{ i.start }}</h5>
+                    <p>{{ i.summary }}</p>
+            {% empty %}
+                <p>Sorry, there are no special events this week.</p>
+            {% endfor %}
+        </ul>
+
+        {% with upcoming_count=view.upcoming_special_events.count %}
+            {% if upcoming_count %}
+                <a class="more" href="{% url 'blanc_basic_events:specialevent-list' %}">View {{ upcoming_count }} upcoming event{{ upcoming_count|pluralize }}</a>
+            {% endif %}
+        {% endwith %}
+    </section>
+</div>
+{% endblock content %}
