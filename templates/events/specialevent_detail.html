@@ -14,7 +14,7 @@
     {% endif %}
     <h1 class="title">{{ object.title }}</h1>
     <h6>
-        {{ object.start|date:"j M Y h:iA" }}
+        {{ object.start|date:"j M Y g:iA" }}
 
         {% if object.start != object.end %}
             &mdash;
@@ -23,7 +23,7 @@
                 {{ object.end|date:"j M Y" }}
             {% endif %}
 
-            {{ object.end|date:"h:iA" }}
+            {{ object.end|date:"g:iA" }}
         {% endif %}
     </h6>
     <div class="event-content">

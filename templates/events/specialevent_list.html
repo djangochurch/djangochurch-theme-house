@@ -20,7 +20,7 @@
             {% endif %}
             <h1><a href="{{ i.get_absolute_url }}">{{ i }}</a></h1>
             <h6>
-                {{ i.start|date:"j M Y" }} {{ i.start|date:"h:iA" }}
+                {{ i.start|date:"j M Y" }} {{ i.start|date:"g:iA" }}
 
                 {% if i.start != i.end %}
                     &mdash;
@@ -29,7 +29,7 @@
                         {{ i.end|date:"j M Y" }}
                     {% endif %}
 
-                    {{ i.end|date:"h:iA" }}
+                    {{ i.end|date:"g:iA" }}
                 {% endif %}
             </h6>
             <div class="teaser">

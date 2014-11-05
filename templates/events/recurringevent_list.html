@@ -19,7 +19,7 @@
             {% endifchanged %}
             <li>
                 <h4>{{ i }}</h4>
-                <h5>{{ i.frequency }}</h5>
+                <h5>{{ i.time|date:"g:iA" }} {{ i.frequency }}</h5>
                 <p>{{ i.description|safe }}</p>
             </li>
         {% endfor %}
@@ -36,7 +36,7 @@
                         <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
                     {% endif %}
                     <h4><a href="{{ i.get_absolute_url }}">{{ i }}</a></h4>
-                    <h5>{{ i.start|date:"j M Y h:iA" }}</h5>
+                    <h5>{{ i.start|date:"j M Y g:iA" }}</h5>
                     <p>{{ i.summary }}</p>
                 </li>
             {% empty %}
