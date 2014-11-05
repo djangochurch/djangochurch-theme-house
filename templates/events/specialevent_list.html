@@ -19,7 +19,19 @@
                 <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
             {% endif %}
             <h1><a href="{{ i.get_absolute_url }}">{{ i }}</a></h1>
-            <h6>{{ i.start|date:"j M Y" }} til {{ i.start|date:"j M Y" }}</h6>
+            <h6>
+                {{ i.start|date:"j M Y" }} {{ i.start|date:"h:iA" }}
+
+                {% if i.start != i.end %}
+                    &mdash;
+
+                    {% if i.start.date != i.end.date %}
+                        {{ i.end|date:"j M Y" }}
+                    {% endif %}
+
+                    {{ i.end|date:"h:iA" }}
+                {% endif %}
+            </h6>
             <div class="teaser">
                 {{ i.description|safe }}
             </div>

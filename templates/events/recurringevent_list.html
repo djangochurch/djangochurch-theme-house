@@ -35,7 +35,7 @@
                         <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
                     {% endif %}
                     <h4><a href="{{ i.get_absolute_url }}">{{ i }}</a></h4>
-                    <h5>{{ i.start }}</h5>
+                    <h5>{{ i.start|date:"j M Y h:iA" }}</h5>
                     <p>{{ i.summary }}</p>
             {% empty %}
                 <p>Sorry, there are no special events this week.</p>

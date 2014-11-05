@@ -13,7 +13,19 @@
         <a href="{{ object.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ object }}" /></a>
     {% endif %}
     <h1 class="title">{{ object.title }}</h1>
-    <h6>{{ object.start|date:"j M Y h:m" }}</h6>
+    <h6>
+        {{ object.start|date:"j M Y h:iA" }}
+
+        {% if object.start != object.end %}
+            &mdash;
+
+            {% if object.start.date != object.end.date %}
+                {{ object.end|date:"j M Y" }}
+            {% endif %}
+
+            {{ object.end|date:"h:iA" }}
+        {% endif %}
+    </h6>
     <div class="event-content">
         {{ object.description|safe }}
     </div>
