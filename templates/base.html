@@ -38,16 +38,24 @@
                 <div class="news">
                     {% get_latest_news 1 as news_list %}
                     {% for news in news_list %}
-                        <h2><a href="{{ news.get_absolute_url }}">{{ news.title|truncatewords_html:'5' }}</a></h2>
-                        <p>{% firstof news.teaser|truncatewords_html:'10' news.content|truncatewords_html:"10" %} <a href="{{ news.get_absolute_url }}" title="{{ news.title }}">more</a></p>
+                        <h2><a href="{{ news.get_absolute_url }}">{{ news.title|truncatewords:5 }}</a></h2>
+                        <p>
+                            {% if news.teaser %}
+                                {{ news.teaser|truncatewords:10 }}
+                            {% else %}
+                                {{ news.content|striptags|truncatewords:10 }}
+                            {% endif %}
+
+                            <a href="{{ news.get_absolute_url }}" title="{{ news.title }}">more</a>
+                        </p>
                         <h3><a href="{% url 'blanc_basic_news:post-list' %}">More News...</a></h3>
                     {% endfor %}
                 </div>
                 <div class="events">
                     {% get_upcoming_events 1 as events %}
                     {% for event in events %}
-                        <h2><a href="{{ event.get_absolute_url }}">{{ event.title|truncatewords_html:'5' }}</a></h2>
-                        <p>{{ event.description|truncatewords_html:'10' }} <a href="{{ event.get_absolute_url }}" title="{{ event.title }}">more</a></p>
+                        <h2><a href="{{ event.get_absolute_url }}">{{ event.title|truncatewords:5 }}</a></h2>
+                        <p>{{ event.summary|truncatewords:10 }} <a href="{{ event.get_absolute_url }}" title="{{ event.title }}">more</a></p>
                         <h3><a href="{% url 'blanc_basic_events:events-home' %}">More Events...</a></h3>
                     {% endfor %}
                 </div>
