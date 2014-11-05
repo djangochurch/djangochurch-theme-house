@@ -1,0 +1,12 @@
+{% load page_tags %}
+
+{% get_pages_at_level current_page as subnav_pages %}
+{% if subnav_pages %}
+    <nav class="subnav">
+        <ul>
+            {% for page, page_active in subnav_pages %}
+                <li><a href="{{ page.get_absolute_url }}"{% if page_active %} class="active"{% endif %}>{{ page.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}
