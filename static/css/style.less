@@ -430,6 +430,15 @@ body {
 
 // mobile
 @media all and (min-width: 0) and (max-width:540px) {
+    .nav {
+        ul {
+            padding: 1em 0;
+        }
+        a {
+            line-height: 1.5;
+
+        }
+    }
     .foot, .main .content .wrap {
         width: auto;
         padding: 0 1em;
@@ -455,6 +464,12 @@ body {
             margin-top: -50px;
         }
     }
+    .more.ical {
+        float: none;
+        display: block;
+        text-align: center;
+        margin-top: 1em;
+    }
     .events-table {
         display: block;
         h1 { padding-left: 0; }
@@ -464,6 +479,12 @@ body {
             &.regular-events {
                 border-right: none;
             }
+        }
+    }
+    .events-list, .post, .events-detail, .event.summary.image {
+        img {
+            width: 100%;
+            height: auto;
         }
     }
 }
