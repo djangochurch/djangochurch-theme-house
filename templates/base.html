@@ -11,7 +11,7 @@
     <![endif]-->
     {% block endhead %}{% endblock %}
 </head>
-<body>
+<body class="{% block bodyclass %}default{% endblock %}">
 
 <main class="page">
     <header class="head">
@@ -71,6 +71,8 @@
         <li><a href="tel:+441214960000">0121 496 0000</a></li>
     </ul>
 </footer>
+
+{% block endpage %}{% endblock %}
 
 </body>
 </html>
