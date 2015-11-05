@@ -15,8 +15,9 @@
     {% for i in object_list %}
         <li class="event summary {% if i.image %}image{% endif %}">
             {% if i.image %}
-                {% thumbnail i.image.file 593x480 upscale as thumb %}
-                <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
+                {% thumbnail i.image.file "593x480" as thumb %}
+                    <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
+                {% endthumbnail %}
             {% endif %}
             <h1><a href="{{ i.get_absolute_url }}">{{ i }}</a></h1>
             <h6>

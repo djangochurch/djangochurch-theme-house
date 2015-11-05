@@ -9,8 +9,9 @@
 {% block content %}
 <div class="event-detail">
     {% if object.image %}
-        {% thumbnail object.image.file 593x480 upscale as thumb %}
-        <a href="{{ object.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ object }}" /></a>
+        {% thumbnail object.image.file "593x480" as thumb %}
+            <a href="{{ object.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ object }}" /></a>
+        {% endthumbnail %}
     {% endif %}
     <h1 class="title">{{ object.title }}</h1>
     <h6>

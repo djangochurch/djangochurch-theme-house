@@ -9,8 +9,9 @@
 {% block content %}
 <div class="post detail {% if object.image %}image{% endif %}">
     {% if object.image %}
-        {% thumbnail object.image.file 560x480 upscale as thumb %}
-        <img src="{{ thumb.url }}" alt="{{ i }}" />
+        {% thumbnail object.image.file "560x480" as thumb %}
+            <img src="{{ thumb.url }}" alt="{{ i }}" />
+        {% endthumbnail %}
     {% endif %}
     <h1><a href="{{ object.get_absolute_url }}">{{ object }}</a></h1>
     <h6>{{ object.date|date:"j M Y" }} &bull; <a href="{{ object.category.get_absolute_url }}">{{ object.category }}</a></h6>
