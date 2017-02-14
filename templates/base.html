@@ -24,9 +24,8 @@
     </header>
 
     <div class="main">
-        <div class="hero-image">
-            <img src="http://lorempixel.com/1080/420/">
-        </div>
+        {% block hero_image %}{% endblock %}
+
         <article class="content box">
             <div class="wrap">
                 {% block content %}{% endblock %}

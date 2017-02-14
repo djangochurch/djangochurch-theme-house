@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load page_tags %}
+{% load thumbnail %}
 
 
 {% block title %}{{ page.title }} - {{ block.super }}{% endblock %}
@@ -15,6 +16,15 @@
 {% block subnav %}
 {% include "includes/subnav.html" with current_page=page only %}
 {% endblock subnav %}
+
+
+{% block hero_image %}
+{% thumbnail page.hero_image.file "1080" as thumb %}
+    <div class="hero-image">
+        <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="">
+    </div>
+{% endthumbnail %}
+{% endblock hero_image %}
 
 
 {% block content %}
