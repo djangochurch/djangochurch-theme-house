@@ -4,23 +4,24 @@
 
 {% block content %}
 <ul class="post-list">
-    {% for i in object_list %}
-        <li class="post summary {% if i.image %}image{% endif %}">
-            {% if i.image %}
-                {% thumbnail i.image.file "480x360" as thumb %}
-                    <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
-                {% endthumbnail %}
-            {% endif %}
-            <h1><a href="{{ i.get_absolute_url }}">{{ i }}</a></h1>
-            <h6>{{ i.date|date:"j M Y" }} &bull; <a href="{{ i.category.get_absolute_url }}">{{ i.category }}</a></h6>
+    {% for post in object_list %}
+        <li class="post summary {% if post.image %}image{% endif %}">
+            {% thumbnail post.image.file "480x360" as thumb %}
+                <a href="{{ post.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ post }}" /></a>
+            {% endthumbnail %}
+
+            <h1><a href="{{ post.get_absolute_url }}">{{ post }}</a></h1>
+            <h6>{{ post.date|date:"j M Y" }} &bull; <a href="{{ post.category.get_absolute_url }}">{{ post.category }}</a></h6>
+
             <div class="teaser">
-                {% if i.teaser %}
-                    {{ i.teaser|linebreaks }}
+                {% if post.teaser %}
+                    {{ post.teaser|linebreaks }}
                 {% else %}
-                    {{ i.content|safe }}
+                    {{ post.content|safe }}
                 {% endif %}
             </div>
-            <a class="more" href="{{ i.get_absolute_url }}">Read More</a>
+
+            <a class="more" href="{{ post.get_absolute_url }}">Read More</a>
         </li>
     {% endfor %}
 </ul>
