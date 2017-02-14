@@ -19,7 +19,7 @@
 
 
 {% block hero_image %}
-{% thumbnail page.hero_image.file "1080" as thumb %}
+{% thumbnail page.hero_image.file '1200x500' crop='center' as thumb %}
     <div class="hero-image">
         <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="">
     </div>

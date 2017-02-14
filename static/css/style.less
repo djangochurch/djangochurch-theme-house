@@ -62,10 +62,22 @@ body {
 
 .hero-image {
     width: 100%;
+    max-width: 1200px;
+    height: 40vw;
+    min-height: 10rem;
+    max-height: 20rem;
+    margin: auto;
+    position: relative;
     overflow: hidden;
     vertical-align: top;
+
     img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         width: 100%;
+        min-height: 100%;
         height: auto;
         vertical-align: top;
     }
@@ -207,7 +219,6 @@ body {
 }
 
 .content {
-
     padding-top: 5em;
     padding-bottom: 5em;
 
@@ -224,6 +235,10 @@ body {
         max-width: 100%;
         height: auto;
     }
+}
+
+.hero-image + .content {
+    padding-top: 1em;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
