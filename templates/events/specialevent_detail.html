@@ -8,11 +8,10 @@
 
 {% block content %}
 <div class="event-detail">
-    {% if object.image %}
-        {% thumbnail object.image.file "593x480" as thumb %}
-            <a href="{{ object.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ object }}" /></a>
-        {% endthumbnail %}
-    {% endif %}
+    {% thumbnail object.image.file "593x480" as thumb %}
+        <a href="{{ object.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ object }}" /></a>
+    {% endthumbnail %}
+
     <h1 class="title">{{ object.title }}</h1>
     <h6>
         {{ object.start|date:"j M Y g:iA" }}

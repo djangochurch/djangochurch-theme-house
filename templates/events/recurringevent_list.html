@@ -31,11 +31,10 @@
         <ul class="event-list">
             {% for i in view.special_events_this_week %}
                 <li {% if not i.image %}class="noimage"{% endif %}>
-                    {% if i.image %}
-                        {% thumbnail i.image.file "96x96" crop="center" as thumb %}
-                            <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
-                        {% endthumbnail %}
-                    {% endif %}
+                    {% thumbnail i.image.file "96x96" crop="center" as thumb %}
+                        <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
+                    {% endthumbnail %}
+
                     <h4><a href="{{ i.get_absolute_url }}">{{ i }}</a></h4>
                     <h5>{{ i.start|date:"j M Y g:iA" }}</h5>
                     <p>{{ i.summary }}</p>
